@@ -802,34 +802,6 @@ describe('modules/manager/gradle/parser', () => {
         ${'base="https://foo.bar"'} | ${'maven { name "qux"; setUrl(base) }'}                                      | ${'https://foo.bar'}
         ${''}                       | ${'maven { name "qux"; setUrl(["https://foo.bar/baz"]) }'}                   | ${null}
         ${''}                       | ${'maven { name "qux"; setUrl("foo", "bar") }'}                              | ${null}
-        ${''}                       | ${'maven { name = 'qux'; setUrl("https://foo.bar/baz") }'}                     | ${'https://foo.bar/baz'}
-        ${''}                       | ${'maven { name = 'qux'; setUrl(uri("https://foo.bar/baz")) }'}                | ${'https://foo.bar/baz'}
-        ${'base="https://foo.bar"'} | ${'maven { name = 'qux'; setUrl("${base}/baz") }'}                             | ${'https://foo.bar/baz'}
-        ${'base="https://foo.bar"'} | ${'maven { name = 'qux'; setUrl(project.property("base")) }'}                  | ${'https://foo.bar'}
-        ${'base="https://foo.bar"'} | ${'maven { name = 'qux'; setUrl(base) }'}                                      | ${'https://foo.bar'}
-        ${''}                       | ${'maven { name = 'qux'; setUrl(["https://foo.bar/baz"]) }'}                   | ${null}
-        ${''}                       | ${'maven { name = 'qux'; setUrl("foo", "bar") }'}                              | ${null}
-        ${''}                       | ${'maven { name = 'qux'\nsetUrl("https://foo.bar/baz") }'}                     | ${'https://foo.bar/baz'}
-        ${''}                       | ${'maven { name = 'qux'\nsetUrl(uri("https://foo.bar/baz")) }'}                | ${'https://foo.bar/baz'}
-        ${'base="https://foo.bar"'} | ${'maven { name = 'qux'\nsetUrl("${base}/baz") }'}                             | ${'https://foo.bar/baz'}
-        ${'base="https://foo.bar"'} | ${'maven { name = 'qux'\nsetUrl(project.property("base")) }'}                  | ${'https://foo.bar'}
-        ${'base="https://foo.bar"'} | ${'maven { name = 'qux'\nsetUrl(base) }'}                                      | ${'https://foo.bar'}
-        ${''}                       | ${'maven { name = 'qux'\nsetUrl(["https://foo.bar/baz"]) }'}                   | ${null}
-        ${''}                       | ${'maven { name = 'qux'\nsetUrl("foo", "bar") }'}                              | ${null}
-        ${''}                       | ${'maven { name 'qux'\nsetUrl("https://foo.bar/baz") }'}                     | ${'https://foo.bar/baz'}
-        ${''}                       | ${'maven { name 'qux'\nsetUrl(uri("https://foo.bar/baz")) }'}                | ${'https://foo.bar/baz'}
-        ${'base="https://foo.bar"'} | ${'maven { name 'qux'\nsetUrl("${base}/baz") }'}                             | ${'https://foo.bar/baz'}
-        ${'base="https://foo.bar"'} | ${'maven { name 'qux'\nsetUrl(project.property("base")) }'}                  | ${'https://foo.bar'}
-        ${'base="https://foo.bar"'} | ${'maven { name 'qux'\nsetUrl(base) }'}                                      | ${'https://foo.bar'}
-        ${''}                       | ${'maven { name 'qux'\nsetUrl(["https://foo.bar/baz"]) }'}                   | ${null}
-        ${''}                       | ${'maven { name 'qux'\nsetUrl("foo", "bar") }'}                              | ${null}
-        ${''}                       | ${'maven { name 'qux'; setUrl("https://foo.bar/baz") }'}                     | ${'https://foo.bar/baz'}
-        ${''}                       | ${'maven { name 'qux'; setUrl(uri("https://foo.bar/baz")) }'}                | ${'https://foo.bar/baz'}
-        ${'base="https://foo.bar"'} | ${'maven { name 'qux'; setUrl("${base}/baz") }'}                             | ${'https://foo.bar/baz'}
-        ${'base="https://foo.bar"'} | ${'maven { name 'qux'; setUrl(project.property("base")) }'}                  | ${'https://foo.bar'}
-        ${'base="https://foo.bar"'} | ${'maven { name 'qux'; setUrl(base) }'}                                      | ${'https://foo.bar'}
-        ${''}                       | ${'maven { name 'qux'; setUrl(["https://foo.bar/baz"]) }'}                   | ${null}
-        ${''}                       | ${'maven { name 'qux'; setUrl("foo", "bar") }'}                              | ${null}
         ${''}                       | ${'maven { setUrl("https://foo.bar/baz"); name = "qux" }'}                     | ${'https://foo.bar/baz'}
         ${''}                       | ${'maven { setUrl(uri("https://foo.bar/baz")); name = "qux" }'}                | ${'https://foo.bar/baz'}
         ${'base="https://foo.bar"'} | ${'maven { setUrl("${base}/baz"); name = "qux" }'}                             | ${'https://foo.bar/baz'}
@@ -858,34 +830,6 @@ describe('modules/manager/gradle/parser', () => {
         ${'base="https://foo.bar"'} | ${'maven { setUrl(base); name "qux" }'}                                      | ${'https://foo.bar'}
         ${''}                       | ${'maven { setUrl(["https://foo.bar/baz"]); name "qux" }'}                   | ${null}
         ${''}                       | ${'maven { setUrl("foo", "bar"); name "qux" }'}                              | ${null}
-        ${''}                       | ${'maven { setUrl("https://foo.bar/baz"); name = 'qux' }'}                     | ${'https://foo.bar/baz'}
-        ${''}                       | ${'maven { setUrl(uri("https://foo.bar/baz")); name = 'qux' }'}                | ${'https://foo.bar/baz'}
-        ${'base="https://foo.bar"'} | ${'maven { setUrl("${base}/baz"); name = 'qux' }'}                             | ${'https://foo.bar/baz'}
-        ${'base="https://foo.bar"'} | ${'maven { setUrl(project.property("base")); name = 'qux' }'}                  | ${'https://foo.bar'}
-        ${'base="https://foo.bar"'} | ${'maven { setUrl(base); name = 'qux' }'}                                      | ${'https://foo.bar'}
-        ${''}                       | ${'maven { setUrl(["https://foo.bar/baz"]); name = 'qux' }'}                   | ${null}
-        ${''}                       | ${'maven { setUrl("foo", "bar"); name = 'qux' }'}                              | ${null}
-        ${''}                       | ${'maven { setUrl("https://foo.bar/baz")\nname = 'qux' }'}                     | ${'https://foo.bar/baz'}
-        ${''}                       | ${'maven { setUrl(uri("https://foo.bar/baz"))\nname = 'qux' }'}                | ${'https://foo.bar/baz'}
-        ${'base="https://foo.bar"'} | ${'maven { setUrl("${base}/baz")\nname = 'qux' }'}                             | ${'https://foo.bar/baz'}
-        ${'base="https://foo.bar"'} | ${'maven { setUrl(project.property("base"))\nname = 'qux' }'}                  | ${'https://foo.bar'}
-        ${'base="https://foo.bar"'} | ${'maven { setUrl(base)\nname = 'qux' }'}                                      | ${'https://foo.bar'}
-        ${''}                       | ${'maven { setUrl(["https://foo.bar/baz"])\nname = 'qux' }'}                   | ${null}
-        ${''}                       | ${'maven { setUrl("foo", "bar")\nname = 'qux' }'}                              | ${null}
-        ${''}                       | ${'maven { setUrl("https://foo.bar/baz")\nname 'qux' }'}                     | ${'https://foo.bar/baz'}
-        ${''}                       | ${'maven { setUrl(uri("https://foo.bar/baz"))\nname 'qux' }'}                | ${'https://foo.bar/baz'}
-        ${'base="https://foo.bar"'} | ${'maven { setUrl("${base}/baz")\nname 'qux' }'}                             | ${'https://foo.bar/baz'}
-        ${'base="https://foo.bar"'} | ${'maven { setUrl(project.property("base"))\nname 'qux' }'}                  | ${'https://foo.bar'}
-        ${'base="https://foo.bar"'} | ${'maven { setUrl(base)\nname 'qux' }'}                                      | ${'https://foo.bar'}
-        ${''}                       | ${'maven { setUrl(["https://foo.bar/baz"])\nname 'qux' }'}                   | ${null}
-        ${''}                       | ${'maven { setUrl("foo", "bar")\nname 'qux' }'}                              | ${null}
-        ${''}                       | ${'maven { setUrl("https://foo.bar/baz"); name 'qux' }'}                     | ${'https://foo.bar/baz'}
-        ${''}                       | ${'maven { setUrl(uri("https://foo.bar/baz")); name 'qux' }'}                | ${'https://foo.bar/baz'}
-        ${'base="https://foo.bar"'} | ${'maven { setUrl("${base}/baz"); name 'qux' }'}                             | ${'https://foo.bar/baz'}
-        ${'base="https://foo.bar"'} | ${'maven { setUrl(project.property("base")); name 'qux' }'}                  | ${'https://foo.bar'}
-        ${'base="https://foo.bar"'} | ${'maven { setUrl(base); name 'qux' }'}                                      | ${'https://foo.bar'}
-        ${''}                       | ${'maven { setUrl(["https://foo.bar/baz"]); name 'qux' }'}                   | ${null}
-        ${''}                       | ${'maven { setUrl("foo", "bar"); name 'qux' }'}                              | ${null}
         ${'base="https://foo.bar"'} | ${'publishing { repositories { maven("${base}/baz") } }'}        | ${null}
       `('$def | $input', ({ def, input, url }) => {
         const expected = url ? [{ registryUrl: url }] : [];
